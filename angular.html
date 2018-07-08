@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" ng-app>
+<head>
+    <meta charset="UTF-8">
+    <title>AngularJS</title>
+    <script type="application/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular.min.js"></script>
+    <script type="application/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="application/javascript">
+        $(document).ready(function(){
+
+            $('#MyNameInput').on('keyup', function () {
+                now = new Date();
+                birthDay = new Date(1987, 7, 8);
+                if(((now.getMonth() + 1) == birthDay.getMonth()) && ((now.getDate()) == birthDay.getDate())){
+                    $('#HappyBithday').show();
+                    $('#SadSmile').hide();
+                }
+                else
+                {
+                    $('#HappyBithday').hide();
+                    $('#SadSmile').show();
+                }
+
+            })
+        });
+    </script>
+</head>
+<body>
+    <div>
+        <label>Как вас зовут?</label>
+        <input type="text" id="MyNameInput" ng-model="UserName" placeholder="Введите имя">
+        <h1><span id="HappyBithday" hidden="true">С днем рождения, {{UserName}}!</span><span id="SadSmile" hidden="true">:(</span></h1>
+    </div>
+</body>
+</html>

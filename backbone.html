@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Backbone</title>
+    <script type="application/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="application/javascript" src="vendor/underscorejs.js"></script>
+    <script type="application/javascript" src="vendor/backbone.js"></script>
+    <script>
+        $(document).ready(function(){
+
+            var model = new Backbone.Model({
+                name: ''
+            });
+
+            model.on('change:name', function(){
+                $('#UserName').html(model.get('name'));
+            });
+
+            $('#MyNameInput').on('keyup', function () {
+                now = new Date();
+                birthDay = new Date(1987, 7, 8);
+
+                model.set('name', $(this).val());
+
+                if(((now.getMonth() + 1) == birthDay.getMonth()) && ((now.getDate()) == birthDay.getDate())){
+                    $('#HappyBithday').show();
+                    $('#SadSmile').hide();
+                }
+                else
+                {
+                    $('#HappyBithday').hide();
+                    $('#SadSmile').show();
+                }
+
+            })
+        });
+    </script>
+</head>
+<body>
+    <label>Как вас зовут?</label>
+    <input type="text" id="MyNameInput" placeholder="введите имя">
+    <h1><span id="HappyBithday" hidden="true">С днем рождения, <span id="UserName"></span>!</span><span id="SadSmile" hidden="true">:(</span></h1>
+
+</body>
+</html>
